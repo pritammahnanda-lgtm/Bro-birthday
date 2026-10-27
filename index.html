@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Shinu 🎂</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #ffdeed, #e5ddff, #d7f8ff);
+    color: #54234f;
+    text-align: center;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 25px 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.page.active {
+    display: flex;
+}
+
+.card {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px 20px;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.86);
+    box-shadow: 0 10px 40px #9b5b9b35;
+    border: 2px solid white;
+    position: relative;
+    z-index: 5;
+}
+
+h1 {
+    font-size: clamp(30px, 8vw, 43px);
+    margin: 15px 0;
+    color: #f04496;
+}
+
+h2 {
+    font-size: 27px;
+    margin: 15px 0;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 15px 0;
+}
+
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 14px 24px;
+    margin: 12px 0;
+    background: linear-gradient(90deg, #ff5ca8, #9b69ff);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 18px #b66cba55;
+}
+
+button:active {
+    transform: scale(.95);
+}
+
+/* PANDA */
+
+.panda {
+    font-size: 100px;
+    display: inline-block;
+}
+
+.running {
+    animation: run 0.35s infinite alternate;
+}
+
+@keyframes run {
+    from {
+        transform: translateX(-20px) rotate(-7deg);
+    }
+    to {
+        transform: translateX(20px) rotate(7deg);
+    }
+}
+
+/* GIFT */
+
+.gift {
+    font-size: 110px;
+    cursor: pointer;
+    animation: gift 1s infinite alternate;
+}
+
+@keyframes gift {
+    from {
+        transform: scale(1) rotate(-5deg);
+    }
+    to {
+        transform: scale(1.12) rotate(5deg);
+    }
+}
+
+/* PARTY ANIMATIONS */
+
+.decoration {
+    position: absolute;
+    top: 110%;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-130vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* BIRTHDAY TITLE */
+
+.rainbow {
+    background: linear-gradient(90deg, #ff398b, #975bff, #ff7b3d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* CAKE */
+
+.cake-area {
+    width: 270px;
+    height: 170px;
+    position: relative;
+    margin: 35px auto 15px;
+}
+
+.cake {
+    width: 230px;
+    height: 110px;
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    cursor: pointer;
+}
+
+.cake-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 230px;
+    height: 40px;
+    background: #ffbad8;
+    border: 4px solid #ff83b9;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.cake-body {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 230px;
+    height: 80px;
+    border-radius: 0 0 17px 17px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #ff78ad 0px,
+        #ff78ad 25px,
+        #fff0f7 25px,
+        #fff0f7 40px
+    );
+    border: 3px solid #f05d9c;
+}
+
+.candle {
+    position: absolute;
+    width: 12px;
+    height: 38px;
+    background: repeating-linear-gradient(
+        45deg,
+        white 0px,
+        white 6px,
+        #a77cff 6px,
+        #a77cff 12px
+    );
+    left: 109px;
+    top: -34px;
+    z-index: 3;
+}
+
+.flame {
+    position: absolute;
+    top: -25px;
+    left: -5px;
+    font-size: 22px;
+    animation: flicker .25s infinite alternate;
+}
+
+@keyframes flicker {
+    to {
+        transform: scale(.8) rotate(10deg);
+    }
+}
+
+.slice {
+    position: absolute;
+    font-size: 34px;
+    right: -5px;
+    top: 38px;
+    opacity: 0;
+    z-index: 4;
+    transition: .4s;
+}
+
+.slice.cut {
+    opacity: 1;
+    transform: translate(65px, -18px) rotate(35deg);
+}
+
+#feedButton {
+    display: none;
+}
+
+.small {
+    font-size: 14px;
+    opacity: .8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1: PANDA ENTRY -->
+
+<section class="page active" id="page1">
+    <div class="card">
+        <div class="panda running">🐼</div>
+
+        <h1>Rukooo! 🐾</h1>
+
+        <p>
+            Oye Shinu bhai! 😎<br>
+            Ruko ruko... panda tumhare liye
+            ek special surprise lekar aaya hai! 🎁
+        </p>
+
+        <button onclick="nextPage(2)">
+            Kaisa surprise? 👀
+        </button>
+    </div>
+</section>
+
+
+<!-- PAGE 2: GIFT -->
+
+<section class="page" id="page2">
+    <div class="card">
+
+        <div class="panda">🐼</div>
+
+        <h1>Surprise Time! 🎉</h1>
+
+        <p>
+            Panda tumhare liye ek gift laya hai! ❤️
+            <br>
+            Gift ko touch karo!
+        </p>
+
+        <div class="gift" onclick="openGift()">🎁</div>
+
+        <p class="small">👇 Touch your gift 👇</p>
+
+    </div>
+</section>
+
+
+<!-- PAGE 3: BIRTHDAY SURPRISE -->
+
+<section class="page" id="page3">
+    <div class="card">
+
+        <div class="panda">🐼🌸</div>
+
+        <h1 class="rainbow">
+            Happy Birthday!
+        </h1>
+
+        <h2>Mere Bhai Shinu ❤️</h2>
+
+        <p>
+            Aaj ka din bahut special hai,
+            kyunki aaj mere bhai ka birthday hai! 🥳
+        </p>
+
+        <p>
+            Hamesha haste rehna,
+            khush rehna aur life mein
+            khoob success paana! 💖
+        </p>
+
+        <p>
+            🎈 Balloons, 🌹 Flowers,
+            🐼 Pandas aur bahut saara pyaar!
+        </p>
+
+        <button onclick="nextPage(4)">
+            Chalo Cake Kaatein! 🎂
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 4: CAKE CUTTING -->
+
+<section class="page" id="page4">
+    <div class="card">
+
+        <h1>Birthday Cake! 🎂</h1>
+
+        <p>
+            Shinu bhai, cake ko 5 baar touch karo!
+            Har tap par ek piece cut hoga. 🍰
+        </p>
+
+        <div class="cake-area">
+
+            <div class="cake" onclick="cutCake()">
+
+                <div class="candle">
+                    <span class="flame">🔥</span>
+                </div>
+
+                <div class="cake-top"></div>
+
+                <div class="cake-body"></div>
+
+                <span class="slice" id="slice">🍰</span>
+
+            </div>
+
+        </div>
+
+        <h2 id="counter">0 / 5 pieces</h2>
+
+        <p id="cakeMessage">
+            Cake ko touch karo, bhai! 👆
+        </p>
+
+        <button id="feedButton" onclick="feedPanda()">
+            Panda se Cake Khao 🐼🍰
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 5: FINAL WISHES -->
+
+<section class="page" id="page5">
+    <div class="card">
+
+        <div class="panda">🐼🍰</div>
+
+        <h1 class="rainbow">
+            Happy Birthday!
+        </h1>
+
+        <h2>Once Again, Brother! ❤️</h2>
+
+        <p>
+            🐼 Panda: "Lo Shinu bhai,
+            tumhare liye cake ka piece! 🍰"
+        </p>
+
+        <p>
+            Mere bhai, apne is special din ko
+            khoob enjoy karna! ❤️
+        </p>
+
+        <p>
+            🎉 Enjoy Every Moment! 🎉
+        </p>
+
+        <p>
+            Aur haan bhai...
+            <b>party mein toh milna chahiye! 😎</b>
+        </p>
+
+        <p>
+            Tumhare liye party mein
+            ek aur gift hai! 🎁
+        </p>
+
+        <div class="gift">🎁💝🎁</div>
+
+        <h2>Love You, Brother! ❤️</h2>
+
+        <h1>🥳 HAPPY BIRTHDAY SHINU! 🎂</h1>
+
+        <button onclick="restart()">
+            Surprise Again 🔄
+        </button>
+
+    </div>
+</section>
+
+
+<script>
+
+/* PAGE NAVIGATION */
+
+function nextPage(number) {
+
+    document.querySelectorAll(".page").forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page" + number).classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+
+/* OPEN GIFT */
+
+function openGift() {
+
+    nextPage(3);
+
+    makeParty(160);
+
+}
+
+
+/* PARTY ANIMATIONS: 160 DECORATIONS */
+
+function makeParty(count) {
+
+    const emojis = [
+        "🎈", "🌸", "🌷", "🌹", "🐼",
+        "💖", "✨", "🎊", "🎉", "🦋",
+        "💐", "⭐"
+    ];
+
+    for (let i = 0; i < count; i++) {
+
+        const decoration = document.createElement("span");
+
+        decoration.className = "decoration";
+
+        decoration.textContent =
+            emojis[Math.floor(Math.random() * emojis.length)];
+
+        decoration.style.left = Math.random() * 100 + "%";
+
+        decoration.style.fontSize =
+            (20 + Math.random() * 25) + "px";
+
+        decoration.style.animationDuration =
+            (5 + Math.random() * 8) + "s";
+
+        decoration.style.animationDelay =
+            (Math.random() * 5) + "s";
+
+        document.body.appendChild(decoration);
+
+        setTimeout(function() {
+            decoration.remove();
+        }, 15000);
+    }
+}
+
+
+/* CAKE CUTTING: 5 TAPS */
+
+let cuts = 0;
+
+function cutCake() {
+
+    if (cuts >= 5) {
+        return;
+    }
+
+    cuts++;
+
+    document.getElementById("counter").textContent =
+        cuts + " / 5 pieces";
+
+    const slice = document.getElementById("slice");
+
+    slice.classList.remove("cut");
+
+    void slice.offsetWidth;
+
+    slice.classList.add("cut");
+
+    const messages = [
+        "Yay! First piece cut! 🍰",
+        "Second piece! Yummy! 😋",
+        "Third piece! For Shinu bhai! ❤️",
+        "Fourth piece! Almost done! 🎂",
+        "Fifth piece! Cake cutting complete! 🎉"
+    ];
+
+    document.getElementById("cakeMessage").textContent =
+        messages[cuts - 1];
+
+    if (cuts === 5) {
+
+        document.getElementById("feedButton").style.display =
+            "inline-block";
+
+    }
+
+}
+
+
+/* PANDA FEEDS CAKE */
+
+function feedPanda() {
+
+    document.getElementById("cakeMessage").innerHTML =
+        "🐼 Panda: Lo bhai Shinu, cake khao! 🍰❤️";
+
+    document.getElementById("feedButton").style.display =
+        "none";
+
+    makeParty(50);
+
+    setTimeout(function() {
+        nextPage(5);
+        makeParty(100);
+    }, 2200);
+
+}
+
+
+/* RESTART */
+
+function restart() {
+
+    cuts = 0;
+
+    document.getElementById("counter").textContent =
+        "0 / 5 pieces";
+
+    document.getElementById("cakeMessage").textContent =
+        "Cake ko touch karo, bhai! 👆";
+
+    document.getElementById("slice").classList.remove("cut");
+
+    document.getElementById("feedButton").style.display =
+        "none";
+
+    document.querySelectorAll(".decoration").forEach(function(item) {
+        item.remove();
+    });
+
+    nextPage(1);
+
+}
+
+</script>
+
+</body>
+  </html>
